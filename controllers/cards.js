@@ -1,55 +1,55 @@
-const Card = require('../models/card');
+/* eslint-disable no-undef */
+const Movie = require('../models/movie');
 
-const createCard = (req, res, next) => {
+const createMovie = (req, res, next) => {
   const {
     name,
     link,
   } = req.body;
 
-  Card.create({
+  Movie.create({
     name,
     link,
     owner: req.user._id,
   })
-    .then((card) => {
-      res.status(201).send(card);
+    .then((movie) => {
+      res.status(201).send(movie);
     })
     .catch(next);
 };
 
-const getCards = (req, res, next) => {
-  Card.find({})
-    .then((card) => res.send(card))
+const getMovies = (req, res, next) => {
+  Movie.find({})
+    .then((movie) => res.send(movie))
     .catch(next);
 };
 
-const deleteCard = (req, res, next) => {
-  Card.findById(req.params.id)
+const deleteMovie = (req, res, next) => {
+  Movie.findById(req.params.id)
     .orFail(() => {
       next(res.status(404).send('Карточка не найдена'));
     })
-    .then((card) => {
-      if (card.owner.toString() !== req.user._id) {
+    .then((movie) => {
+      if (movie.owner.toString() !== req.user._id) {
         next(res.status(403).send('Удалять можно только свои карточки'));
       } else {
-        card.deleteOne(card)
-          .then(() => res.send(card));
+        Movie.deleteOne(movie)
+          .then(() => res.send(movie));
       }
     })
     .catch(next);
 };
 
-const likeCard = (req, res, next) => {
-  Card.findByIdAndUpdate(
+const likeMovie = (req, res, next) => {
+  Movie.findByIdAndUpdate(
     req.params.id,
     { $addToSet: { likes: req.user._id } },
     { new: true },
   )
     .populate(['owner', 'likes'])
-    // eslint-disable-next-line consistent-return
-    .then((card) => {
-      if (card) {
-        return res.send(card);
+    .then((movie) => {
+      if (movie) {
+        return res.send(movie);
       }
       next(res.status(404).send('Карточка не найдена'));
     })
@@ -62,16 +62,15 @@ const likeCard = (req, res, next) => {
     });
 };
 
-const dislikeCard = (req, res, next) => {
-  Card.findByIdAndUpdate(
+const dislikeMovie = (req, res, next) => {
+  Movie.findByIdAndUpdate(
     req.params.id,
     { $pull: { likes: req.user._id } },
     { new: true },
   )
-    // eslint-disable-next-line consistent-return
-    .then((card) => {
-      if (card) {
-        return res.send(card);
+    .then((movie) => {
+      if (movie) {
+        return res.send(movie);
       }
       next(res.status(404).send('Карточка не найдена'));
     })
@@ -85,9 +84,9 @@ const dislikeCard = (req, res, next) => {
 };
 
 module.exports = {
-  createCard,
-  getCards,
-  deleteCard,
-  dislikeCard,
-  likeCard,
+  createMovie,
+  getMovies,
+  deleteMovie,
+  dislikeMovie,
+  likeMovie,
 };

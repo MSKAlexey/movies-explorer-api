@@ -1,6 +1,7 @@
+/* eslint-disable no-undef */
 const mongoose = require('mongoose');
 
-const cardSchema = new mongoose.Schema({
+const movieSchema = new mongoose.Schema({
   likes: {
     type: [mongoose.Schema.Types.ObjectId],
     default: [],
@@ -28,4 +29,4 @@ const cardSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model('card', cardSchema);
+module.exports = mongoose.model('movie', movieSchema);
