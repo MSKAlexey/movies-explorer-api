@@ -38,7 +38,7 @@ const validateProfileUpdate = celebrate({
   }),
 });
 
-const validateCreateCard = celebrate({
+const validateCreate = celebrate({
   body: Joi.object().keys({
     name: Joi.string().min(2).max(30).required(),
     link: Joi.string().pattern(regex).required(),
@@ -50,6 +50,6 @@ module.exports = {
   validateSingUp,
   validateSingIn,
   validateAvatarUpdate,
-  validateCreateCard,
+  validateCreate,
   validateProfileUpdate,
 };

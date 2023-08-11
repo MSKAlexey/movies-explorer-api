@@ -2,9 +2,12 @@ const router = require('express').Router();
 const app = require('express')();
 const { createUser, login } = require('../controllers/users');
 const userRouter = require('./users');
-const cardRouter = require('./cards');
+const movieRouter = require('./movies');
 const auth = require('../middlwares/auth');
-const { validateSingUp, validateSingIn } = require('../middlwares/validators/validators');
+const {
+  validateSingUp,
+  validateSingIn
+} = require('../middlwares/validators/validators');
 const NotFoundError = require('../errors/NotFoundError');
 
 app.get('/crash-test', () => {
@@ -19,7 +22,7 @@ router.post('/signin', validateSingIn, login);
 router.use(auth);
 
 router.use('/users', userRouter);
-router.use('/cards', cardRouter);
+router.use('/movies', movieRouter);
 
 router.use((req, res, next) => {
   next(new NotFoundError('Маршрут не найден'));

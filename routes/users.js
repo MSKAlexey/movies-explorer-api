@@ -5,7 +5,12 @@ const {
   getUsersById,
   updateProfile,
 } = require('../controllers/users');
-const { validateAvatarUpdate, validateProfileUpdate, validateId } = require('../middlwares/validators/validators');
+
+const {
+  validateAvatarUpdate,
+  validateProfileUpdate,
+  validateId
+} = require('../middlwares/validators/validators');
 
 router.get('/', getUsers);
 
