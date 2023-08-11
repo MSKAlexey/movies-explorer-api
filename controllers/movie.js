@@ -45,9 +45,7 @@ const createMovie = (req, res, next) => {
 
 const deleteMovie = (req, res, next) => {
   Movie.findById(req.params.id)
-    .orFail(() => {
-      next(res.status(404).send('Карточка не найдена'));
-    })
+    .orFail(() => { next(new NotFoundError('Фильм не найден')); })
     .then((movie) => {
       if (movie.owner.toString() !== req.user._id) {
         next(res.status(403).send('Удалять можно только свои карточки'));

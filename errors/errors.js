@@ -5,69 +5,6 @@ const ForbiddenError = require('./ForbiddenError');
 const NotFoundError = require('./NotFoundError');
 const InternalServerError = require('./InternalServerError');
 
-// class NotFoundError extends Error {
-//   constructor(err) {
-//     super(err);
-//     this.message = err.message;
-//     this.statusCode = 404;
-//   }
-// }
-
-// class GeneralError extends Error {
-//   constructor(err) {
-//     super(err);
-//     this.message = 'Ошибка на стороне сервера';
-//     this.statusCode = 500;
-//   }
-// }
-
-// class EmailDuplicateError extends Error {
-//   constructor(err) {
-//     super(err);
-//     this.message = 'Такой email уже зарегестрирован';
-//     this.statusCode = 409;
-//   }
-// }
-
-// class ForbiddenError extends Error {
-//   constructor(err) {
-//     super(err);
-//     this.message = err.message;
-//     this.statusCode = 403;
-//   }
-// }
-
-// class IncorrectDataError extends Error {
-//   constructor(err) {
-//     super(err);
-//     this.message = err.message;
-//     this.statusCode = 400;
-//   }
-// }
-
-// class ValidationError extends Error {
-//   constructor(err) {
-//     super(err);
-//     this.message = err.message;
-//     this.statusCode = 400;
-//   }
-// }
-
-// class EmailNotFoundError extends Error {
-//   constructor(err) {
-//     super(err);
-//     this.message = 'Такой email не зарегестрирован';
-//     this.statusCode = 401;
-//   }
-// }
-
-// class AuthorizationError extends Error {
-//   constructor(err) {
-//     super(err);
-//     this.message = 'Авторизуйтесь';
-//     this.statusCode = 401;
-//   }
-// }
 
 const errorHandler = (err, req, res, next) => {
   let error;

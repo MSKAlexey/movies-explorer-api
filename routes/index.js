@@ -12,7 +12,7 @@ const NotFoundError = require('../errors/NotFoundError');
 
 app.get('/crash-test', () => {
   setTimeout(() => {
-    throw new Error('Сервер сейчас упадёт');
+    throw new Error('Сервер сейчас упадёт.');
   }, 0);
 });
 
@@ -25,7 +25,7 @@ router.use('/users', userRouter);
 router.use('/movies', movieRouter);
 
 router.use((req, res, next) => {
-  next(new NotFoundError('Маршрут не найден'));
+  next(new NotFoundError('Маршрут не найден.'));
 });
 
 module.exports = router;
