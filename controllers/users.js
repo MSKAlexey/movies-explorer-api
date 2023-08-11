@@ -4,6 +4,9 @@ const User = require('../models/user');
 const { JWT } = require('../utils/config');
 const NotFoundError = require('../errors/NotFoundError');
 const ConflictError = require('../errors/ConflictError');
+const ForbiddenError = require('../errors/ForbiddenError');
+const UnauthorizedError = require('../errors/UnauthorizedError');
+const BadRequestError = require('../errors/BadRequestError');
 
 const createUser = (req, res, next) => {
   const {

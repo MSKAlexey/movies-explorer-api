@@ -1,3 +1,4 @@
+const NotFoundError = require('../errors/NotFoundError');
 const Movie = require('../models/movie');
 
 const getMovies = (req, res, next) => {
@@ -45,7 +46,7 @@ const createMovie = (req, res, next) => {
 
 const deleteMovie = (req, res, next) => {
   Movie.findById(req.params.id)
-    .orFail(() => { next(new NotFoundError('Фильм не найден')); })
+    .orFail(() => next(new NotFoundError('Фильм не найден')))
     .then((movie) => {
       if (movie.owner.toString() !== req.user._id) {
         next(res.status(403).send('Удалять можно только свои карточки'));
