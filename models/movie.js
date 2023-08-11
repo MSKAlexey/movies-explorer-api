@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 const mongoose = require('mongoose');
 
 const movieSchema = new mongoose.Schema({
@@ -23,10 +22,6 @@ const movieSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Поле описание фильма должно быть заполнено'],
   },
-  // description: {
-  //   type: String,
-  //   required: [true, 'Поле описание фильма должно быть заполнено'],
-  // },
   image: {
     type: String,
     default: 'https://upload.wikimedia.org/wikipedia/ru/thumb/c/c1/Tyler_club.jpg/267px-Tyler_club.jpg',
@@ -57,12 +52,6 @@ const movieSchema = new mongoose.Schema({
   nameEN: {
     type: String,
     required: [true, 'Поле nameEN должно быть заполнено'],
-  },
-
-
-  likes: {
-    type: [mongoose.Schema.Types.ObjectId],
-    default: [],
   },
 
   createdAt: {

@@ -60,12 +60,6 @@ const login = (req, res, next) => {
               { _id: user._id },
               JWT,
             );
-            // res.cookie('jwt', jwt, {
-            //   maxAge: 360000,
-            //   httpOnly: true,
-            //   sameSite: true,
-            // });
-            // res.send({ data: user.toJSON() });
             res.send({ token });
           } else {
             next(res.status(401));
