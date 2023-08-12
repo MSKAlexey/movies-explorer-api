@@ -17,7 +17,7 @@ app.get('/crash-test', () => {
 });
 
 router.post('/signup', validateSingUp, createUser);
-router.post('/signin', validateSingIn, login);
+router.post('/signin', /* validateSingIn, */ login);
 
 router.use(auth);
 

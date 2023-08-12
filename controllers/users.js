@@ -11,8 +11,6 @@ const BadRequestError = require('../errors/BadRequestError');
 const createUser = (req, res, next) => {
   const {
     name,
-    about,
-    avatar,
     email,
     password,
   } = req.body;
@@ -21,8 +19,6 @@ const createUser = (req, res, next) => {
     .then((hashedPassword) => {
       User.create({
         name,
-        about,
-        avatar,
         email,
         password: hashedPassword,
       })
@@ -32,6 +28,7 @@ const createUser = (req, res, next) => {
         .catch((err) => {
           if (err.code === 11000) {
             next(new ConflictError('Такой пользователь уже зарегистрирован.'));
+            // next(res.status(409));
           } else {
             next(err);
           }

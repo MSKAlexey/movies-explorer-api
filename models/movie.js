@@ -4,22 +4,27 @@ const movieSchema = new mongoose.Schema({
 
   country: {
     type: String,
+    default: 'aa',
     required: [true, 'Поле страна должно быть заполнено'],
   },
   director: {
     type: String,
+    default: 'aa',
     required: [true, 'Поле режиссёр фильма должно быть заполнено'],
   },
   duration: {
     type: Number,
+    default: '11',
     required: [true, 'Поле год выпуска фильма должно быть заполнено'],
   },
   year: {
     type: Number,
+    default: '11',
     required: [true, 'Поле длительность фильма должно быть заполнено'],
   },
   description: {
     type: String,
+    default: 'aa',
     required: [true, 'Поле описание фильма должно быть заполнено'],
   },
   image: {
@@ -43,14 +48,17 @@ const movieSchema = new mongoose.Schema({
   },
   movieId: {
     type: String,
+    default: 'aa',
     required: [true, 'Поле movieId должно быть заполнено'],
   },
   nameRU: {
     type: String,
+    default: 'aa',
     required: [true, 'Поле nameRU должно быть заполнено'],
   },
   nameEN: {
     type: String,
+    default: 'aa',
     required: [true, 'Поле nameEN должно быть заполнено'],
   },
 

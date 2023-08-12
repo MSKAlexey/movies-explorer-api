@@ -7,7 +7,6 @@ const cookieParser = require('cookie-parser');
 const rateLimit = require('express-rate-limit');
 const { errors } = require('celebrate');
 const routes = require('./routes');
-const errorHandler = require('./errors/errors');
 const cors = require('./middlwares/cors');
 const { requestLogger, errorLogger } = require('./middlwares/logger');
 
@@ -42,7 +41,5 @@ app.use(routes);
 app.use(errorLogger);
 
 app.use(errors());
-
-app.use(errorHandler);
 
 app.listen(PORT);

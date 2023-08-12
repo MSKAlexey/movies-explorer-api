@@ -5,9 +5,10 @@ const UnauthorizedError = require('../errors/UnauthorizedError');
 const auth = (req, res, next) => {
   const { authorization } = req.headers;
 
-  if (!authorization.startsWith('Bearer')) {
+  if (!authorization || !authorization.startsWith('Bearer')) {
     return next(new UnauthorizedError('Авторизуйтесь'));
   }
+
   const token = authorization.split('Bearer ')[1];
 
   let payload;
