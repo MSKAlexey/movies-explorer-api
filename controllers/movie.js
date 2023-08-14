@@ -48,12 +48,12 @@ const deleteMovie = (req, res, next) => {
   Movie.findById(req.params.id)
     .orFail(() => next(new NotFoundError('Фильм не найден')))
     .then((movie) => {
-      // if (movie.owner.toString() !== req.user._id) {
-      //   next(res.status(403).send('Удалять можно только свои карточки'));
-      // } else {
+      if (movie.owner.toString() !== req.user._id) {
+        next(res.status(403).send('Удалять можно только свои фильмы'));
+      } else {
         Movie.deleteOne(movie)
           .then(() => res.send(movie));
-      // }
+      }
     })
     .catch(next);
 };
