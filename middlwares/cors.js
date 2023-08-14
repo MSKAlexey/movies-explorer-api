@@ -1,6 +1,6 @@
 const allowedCors = [
-  'https://alexey.nomoredomains.xyz',
-  'https://api.alexey.nomoredomains.xyz',
+  'alexey.nomoreparties.co',
+  'api.alexey.nomoreparties.co',
   'http://localhost:3000',
   'http://localhost:3001',
 ];
