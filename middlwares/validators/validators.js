@@ -25,13 +25,6 @@ const validateProfileUpdate = celebrate({
   }),
 });
 
-const validateCreate = celebrate({
-  body: Joi.object().keys({
-    name: Joi.string().min(2).max(30).required(),
-    link: Joi.string().pattern(regex).required(),
-  }),
-});
-
 const validateId = celebrate({
   params: Joi.object().keys({
     id: Joi.string().length(24).hex().required(),
@@ -41,7 +34,6 @@ const validateId = celebrate({
 module.exports = {
   validateSingUp,
   validateSingIn,
-  validateCreate,
   validateProfileUpdate,
   validateId,
 };
