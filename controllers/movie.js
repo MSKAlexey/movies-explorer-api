@@ -1,3 +1,4 @@
+const ForbiddenError = require('../errors/ForbiddenError');
 const NotFoundError = require('../errors/NotFoundError');
 const Movie = require('../models/movie');
 
@@ -49,7 +50,7 @@ const deleteMovie = (req, res, next) => {
     .orFail(() => next(new NotFoundError('Фильм не найден')))
     .then((movie) => {
       if (movie.owner.toString() !== req.user._id) {
-        next(res.status(403).send('Удалять можно только свои фильмы'));
+        next(new ForbiddenError('Удалять можно только свои фильмы'));
       } else {
         Movie.deleteOne(movie)
           .then(() => res.send(movie));

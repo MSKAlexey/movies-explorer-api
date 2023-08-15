@@ -4,42 +4,34 @@ const movieSchema = new mongoose.Schema({
 
   country: {
     type: String,
-    default: 'aa',
     required: [true, 'Поле страна должно быть заполнено'],
   },
   director: {
     type: String,
-    default: 'aa',
     required: [true, 'Поле режиссёр фильма должно быть заполнено'],
   },
   duration: {
     type: Number,
-    default: '11',
     required: [true, 'Поле год выпуска фильма должно быть заполнено'],
   },
   year: {
     type: Number,
-    default: '11',
     required: [true, 'Поле длительность фильма должно быть заполнено'],
   },
   description: {
     type: String,
-    default: 'aa',
     required: [true, 'Поле описание фильма должно быть заполнено'],
   },
   image: {
     type: String,
-    default: 'https://upload.wikimedia.org/wikipedia/ru/thumb/c/c1/Tyler_club.jpg/267px-Tyler_club.jpg',
     required: [true, 'Поле постер к фильму должно быть заполнено'],
   },
   trailerLink: {
     type: String,
-    default: 'https://upload.wikimedia.org/wikipedia/ru/thumb/c/c1/Tyler_club.jpg/267px-Tyler_club.jpg',
     required: [true, 'Поле трейлер фильма должно быть заполнено'],
   },
   thumbnail: {
     type: String,
-    default: 'https://upload.wikimedia.org/wikipedia/ru/thumb/c/c1/Tyler_club.jpg/267px-Tyler_club.jpg',
     required: [true, 'Поле миниатюрное изображение постера к фильму должно быть заполнено'],
   },
   owner: {
@@ -48,17 +40,14 @@ const movieSchema = new mongoose.Schema({
   },
   movieId: {
     type: String,
-    default: 'aa',
     required: [true, 'Поле movieId должно быть заполнено'],
   },
   nameRU: {
     type: String,
-    default: 'aa',
     required: [true, 'Поле nameRU должно быть заполнено'],
   },
   nameEN: {
     type: String,
-    default: 'aa',
     required: [true, 'Поле nameEN должно быть заполнено'],
   },
 

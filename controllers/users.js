@@ -28,7 +28,6 @@ const createUser = (req, res, next) => {
         .catch((err) => {
           if (err.code === 11000) {
             next(new ConflictError('Такой пользователь уже зарегистрирован.'));
-            // next(res.status(409));
           } else {
             next(err);
           }
