@@ -47,10 +47,10 @@ const createMovie = (req, res, next) => {
 
 const deleteMovie = (req, res, next) => {
   Movie.findById(req.params.id)
-    .orFail(() => next(new NotFoundError('Фильм не найден')))
+    .orFail(() => next(new NotFoundError({ message: 'Фильм не найден' })))
     .then((movie) => {
       if (movie.owner.toString() !== req.user._id) {
-        next(new ForbiddenError('Удалять можно только свои фильмы'));
+        next(new ForbiddenError({ message: 'Удалять можно только свои фильмы' }));
       } else {
         Movie.deleteOne(movie)
           .then(() => res.send(movie));
