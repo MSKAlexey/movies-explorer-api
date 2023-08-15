@@ -27,7 +27,7 @@ const createUser = (req, res, next) => {
         })
         .catch((err) => {
           if (err.code === 11000) {
-            next(new ConflictError('Такой пользователь уже зарегистрирован.'));
+            next(new ConflictError({ message: 'Такой пользователь уже зарегистрирован.' }));
           } else {
             next(err);
           }
@@ -46,13 +46,13 @@ const login = (req, res, next) => {
   const { email, password } = req.body;
   // для предотвращения лишних пустых запросов
   if (!email || !password) {
-    next(new ForbiddenError('email или пароль не введены.'));
+    next(new ForbiddenError({ message: 'email или пароль не введены.' }));
     return;
   }
 
   User.findOne({ email })
     .select('+password')
-    .orFail(() => next(new UnauthorizedError('Учетные данные введены неверно.')))
+    .orFail(() => next(new UnauthorizedError({ message: 'Учетные данные введены неверно.' })))
     .then((user) => {
       bcrypt.compare(String(password), user.password)
         .then((isValidUser) => {
@@ -63,7 +63,7 @@ const login = (req, res, next) => {
             );
             res.send({ token });
           } else {
-            next(new UnauthorizedError('Учетные данные введены неверно.'));
+            next(new UnauthorizedError({ message: 'Учетные данные введены неверно.' }));
           }
         });
     })
@@ -72,7 +72,7 @@ const login = (req, res, next) => {
 
 const getUsersById = (req, res, next) => {
   User.findById(req.params.id || req.user._id)
-    .orFail(() => next(new NotFoundError('Пользователь с таким id не найден.')))
+    .orFail(() => next(new NotFoundError({ message: 'Пользователь с таким id не найден.' })))
     .then((user) => {
       res.send(user);
     })
@@ -89,7 +89,7 @@ const updateProfile = (req, res, next) => {
     .then((user) => res.status(200).send(user))
     .catch((err) => {
       if (err.name === 'CastError' || err.name === 'ValidationError') {
-        next(new BadRequestError('Что то не так.'));
+        next(new BadRequestError({ message: 'Что то не так.' }));
       } else {
         next(err);
       }

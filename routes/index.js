@@ -25,7 +25,7 @@ router.use('/users', userRouter);
 router.use('/movies', movieRouter);
 
 router.use((req, res, next) => {
-  next(new NotFoundError('Маршрут не найден.'));
+  next(new NotFoundError({ message: 'Маршрут не найден.' }));
 });
 
 module.exports = router;
