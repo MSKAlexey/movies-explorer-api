@@ -7,6 +7,7 @@ const ConflictError = require('../errors/ConflictError');
 const ForbiddenError = require('../errors/ForbiddenError');
 const UnauthorizedError = require('../errors/UnauthorizedError');
 const BadRequestError = require('../errors/BadRequestError');
+const InternalServerError = require('../errors/InternalServerError');
 
 const createUser = (req, res, next) => {
   const {
@@ -91,10 +92,10 @@ const updateProfile = (req, res, next) => {
       if (err.name === 'CastError' || err.name === 'ValidationError') {
         next(new BadRequestError({ message: 'Что то не так.' }));
       } else {
-        next(err);
+        next(new InternalServerError({ message: 'Ошибка на стороне сервера.' }));
       }
     })
-    .catch(next);
+  // .catch(next);
 };
 
 module.exports = {
