@@ -53,7 +53,6 @@ const login = (req, res, next) => {
 
   User.findOne({ email })
     .select('+password')
-    .orFail(() => next(new UnauthorizedError({ message: 'Учетные данные введены неверно.' })))
     .then((user) => {
       bcrypt.compare(String(password), user.password)
         .then((isValidUser) => {
@@ -95,7 +94,7 @@ const updateProfile = (req, res, next) => {
         next(new InternalServerError({ message: 'Ошибка на стороне сервера.' }));
       }
     })
-  // .catch(next);
+    .catch(next);
 };
 
 module.exports = {
