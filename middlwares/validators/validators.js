@@ -1,11 +1,8 @@
 const { celebrate, Joi } = require('celebrate');
-const regex = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/;
 
 const validateSingUp = celebrate({
   body: Joi.object().keys({
-    name: Joi.string().min(2).max(30),
-    about: Joi.string().min(2).max(30),
-    avatar: Joi.string().pattern(regex),
+    name: Joi.string().min(2).max(30).required(),
     email: Joi.string().email().required(),
     password: Joi.string().required(),
   }),
