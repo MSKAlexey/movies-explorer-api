@@ -1,4 +1,4 @@
-const { celebrate, Joi } = require('celebrate');
+const { celebrate, Joi } = require("celebrate");
 
 const validateSingUp = celebrate({
   body: Joi.object().keys({
@@ -18,6 +18,7 @@ const validateSingIn = celebrate({
 const validateProfileUpdate = celebrate({
   body: Joi.object().keys({
     name: Joi.string().min(2).max(30).required(),
+    email: Joi.string().email(),
     // about: Joi.string().min(2).max(30).required(),
   }),
 });
